@@ -50,21 +50,9 @@ void recurcive(char base, Rope* rope){
     }
 }
 
-Rope* new_node(char div){
-    Rope* node = (Rope*)malloc(sizeof(Rope));
-    node->node_content = div;
-
-    node->left = NULL
-    node->right = NULL
-
-    return node;
-}
-
-Rope* new_rope(char* base){
-    Rope* root = new_node(/* chaine coupe*/);
-
-    root->left = new_node(2);
-    root->right = new_node(3);
+Rope* rope_new(char* base){
+    Rope* root = (Rope*)malloc(sizeof(Rope));
+    recurcive(base, root);
 }
 
 void rope_delete(Rope rope){
