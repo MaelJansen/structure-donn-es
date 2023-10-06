@@ -6,7 +6,7 @@ typedef struct Rope{
     char node_content;
     struct Rope* left;
     struct Rope* right;
-    int* size;
+    int size;
     unsigned pointer;
     } Rope;
 
