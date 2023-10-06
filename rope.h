@@ -4,7 +4,7 @@
 #include "inner_string.h"
 
 typedef struct Rope{
-    inner_string content;
+    inner_string node_content;
     struct Rope* left;
     struct Rope* right;
     int size;
@@ -17,7 +17,7 @@ void rope_insert_at();
 
 char* substring(int pos, int len, int c, char* base);
 
-char research(Rope* rope, long int i);
+inner_string research(Rope* rope, long int i);
 
 void recursive(char* base, Rope* rope);
 
