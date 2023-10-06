@@ -11,26 +11,28 @@ typedef struct Rope {
     unsigned pointer;
 } Rope;
 
-void rope_len(Rope* rope){
-
+size_t rope_len(Rope* rope){
+    /* Renvoie la taille  de la chaine de caractère stockée dans la rope*/
+    
 }
 
 void rope_insert_at(){
-
+    /* Permet d'insérer un élément dans la rope a une position donner (dans la chaine de caractères)*/
 }
 
-char* substring(int pos, int len, int c, char* base)
-{
+char* substring(int pos, int len, int c, char* base){
+    /* Renvoie un partie du string*/
     char* substring = malloc(sizeof(base));
     while (c < len) {
-        substring = char[pos + c-1];
+        substring += char[pos + c-1];
         c++;
     }
-    substring = '\0';
+    substring += '\0';
     return substring;
 }
 
 char research(Rope* rope, long int i){
+    /* Renvoie un rope donner*/
     if (rope->size < i && rope->right != NULL){
         return research(rope->right, i - rope->size);
     } else if (rope->left != NULL)
@@ -41,6 +43,7 @@ char research(Rope* rope, long int i){
 }
 
 void recursive(char* base, Rope* rope){
+    /* Permet de créer tout les fils d'une rope */
     if (strlen(base) > 7){
         /* If the lenght > 7 : divide the string into 2 and recall the function with the new parts on the different childs*/
         recursive(substring(0, strlen(base)/2, 0, base), rope->left);
@@ -52,12 +55,14 @@ void recursive(char* base, Rope* rope){
 }
 
 Rope* rope_new(char* base){
+    /* Permet de créer une rope à partir d'une chaine de caractères */
     Rope* root = (Rope*)malloc(sizeof(Rope));
     recursive(base, root);
     return root;
 }
 
 void rope_delete(Rope* rope){
+    /* Permet de supprimer une rope en supprimer tout ces fils */
     if (rope->left != null){
         rope_delete(rope->left);
     } else if (rope->right != null){

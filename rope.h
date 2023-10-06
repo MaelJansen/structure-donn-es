@@ -4,7 +4,7 @@
 
 typedef struct Rope{} Rope;
 
-void rope_len(Rope* rope);
+size_t rope_len(Rope* rope);
 
 void rope_insert_at();
 
