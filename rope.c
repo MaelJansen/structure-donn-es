@@ -41,14 +41,14 @@ void recursive(char* base, Rope* rope){
         recursive(substring(0, strlen(base)/2, 0, base), rope->left);
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
     } else {
-        Rope* rope = (Rope)malloc(sizeof(Rope));
+        Rope* rope = malloc(sizeof(Rope));
         rope->node_content = *base;
     }
 }
 
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
-    Rope* root = (Rope)malloc(sizeof(Rope));
+    Rope* root = malloc(sizeof(Rope));
     recursive(base, root);
     return root;
 }
