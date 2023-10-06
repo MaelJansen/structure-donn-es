@@ -48,7 +48,7 @@ void recursive(char* base, Rope* rope){
 
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
-    Rope root = (Rope)malloc(sizeof(Rope));
+    Rope* root = (Rope)malloc(sizeof(Rope));
     recursive(base, root);
     return root;
 }
