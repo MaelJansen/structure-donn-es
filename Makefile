@@ -10,7 +10,7 @@ launch_test: test_rope
 
 test_rope: test_rope.o rope.o inner_string.o
 rope.o: rope.h 
-#inner_string.o: inner_string.h
+inner_string.o: inner_string.h
 bench: bench.o rope.o inner_string.o 
 
 clean:

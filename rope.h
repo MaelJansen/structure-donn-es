@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "inner_string.h"
 
 typedef struct Rope{
-    char node_content;
+    inner_string content;
     struct Rope* left;
     struct Rope* right;
     int size;

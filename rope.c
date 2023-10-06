@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "rope.h"
+#include "inner_string.h"
 
 size_t rope_len(Rope* rope){
     /* Renvoie la taille  de la chaine de caractère stockée dans la rope*/
@@ -23,7 +24,7 @@ char* substring(int pos, int len, int c, char* base){
     return substring;
 }
 
-char research(Rope* rope, long int i){
+inner_string research(Rope* rope, long int i){
     /* Renvoie un rope donner*/
     if (rope->size < i && rope->right != NULL){
         return research(rope->right, i - rope->size);
@@ -42,7 +43,7 @@ void recursive(char* base, Rope* rope){
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
     } else {
         Rope* rope = malloc(sizeof(Rope));
-        rope->node_content = *base;
+        rope->node_content = convert(base);
     }
 }
 
