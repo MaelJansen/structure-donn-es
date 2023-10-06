@@ -3,14 +3,6 @@
 #include <string.h>
 #include "rope.h"
 
-typedef struct Rope {
-    char node_content;
-    struct Rope* left;
-    struct Rope* right;
-    int* size;
-    unsigned pointer;
-} Rope;
-
 size_t rope_len(Rope* rope){
     /* Renvoie la taille  de la chaine de caractère stockée dans la rope*/
     

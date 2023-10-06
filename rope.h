@@ -2,7 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct Rope{} Rope;
+typedef struct Rope{
+    char node_content;
+    struct Rope* left;
+    struct Rope* right;
+    int* size;
+    unsigned pointer;
+    } Rope;
 
 size_t rope_len(Rope* rope);
 
@@ -17,4 +23,3 @@ void recursive(char* base, Rope* rope);
 Rope* rope_new(char* base);
 
 void rope_delete(Rope* rope);
- 
