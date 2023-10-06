@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "rope.h"
+#include <rope.h>
 
 typedef struct Rope {
     char node_content;
