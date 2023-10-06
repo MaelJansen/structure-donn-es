@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "rope.h"
-#include "inner_string.h"
 
 size_t rope_len(Rope* rope){
     /* Renvoie la taille  de la chaine de caractère stockée dans la rope*/
