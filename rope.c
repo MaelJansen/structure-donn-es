@@ -58,6 +58,10 @@ Rope* rope_new(char* base){
 }
 
 void rope_delete(Rope* rope){
-
+    if (rope->left != null){
+        rope_delete(rope->left);
+    } else if (rope->right != null){
+        rope_delete(rope->right);
+    }
+    free(rope);
 }
- 
