@@ -3,9 +3,9 @@
 #include "inner_string.h"
 
 inner_string convert(char* var){
-    return NULL;
+    return inner_string(["O", 1]);
 }
 
 int inner_len(inner_string base){
-    return NULL;
+    return 0;
 }
