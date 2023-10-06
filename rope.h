@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct Rope{};
+typedef struct Rope{} Rope;
 
 void rope_len(Rope* rope);
 
