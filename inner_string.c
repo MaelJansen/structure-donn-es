@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include "inner_string.h"
 
-inner_string convert(char* var){
+inner_string* convert(char* var){
     inner_string* res = malloc(sizeof(inner_string));
-    res->content = "Test";
+    res->content = *"Test";
     return res;
 }
 
