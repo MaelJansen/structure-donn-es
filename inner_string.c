@@ -3,7 +3,9 @@
 #include "inner_string.h"
 
 inner_string convert(char* var){
-    return inner_string(["O", 1]);
+    inner_string res = malloc(sizeof(inner_string));
+    res->content = "Test";
+    return res;
 }
 
 int inner_len(inner_string base){
