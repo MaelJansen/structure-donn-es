@@ -42,7 +42,7 @@ void recursive(char* base, Rope* rope){
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
     } else {
         Rope* rope = (Rope)malloc(sizeof(Rope));
-        rope->node_content = base;
+        rope->node_content = *base;
     }
 }
 
