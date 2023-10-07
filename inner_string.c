@@ -2,12 +2,9 @@
 #include <stdio.h>
 #include "inner_string.h"
 
-inner_string* convert(char* var){
+inner_string* convert(char* var, int pointeur){
     inner_string* res = malloc(sizeof(inner_string));
-    res->content = *"Test";
+    res->content = *var;
+    res->pointeur = pointeur;
     return res;
-}
-
-int inner_len(inner_string base){
-    return 0;
 }

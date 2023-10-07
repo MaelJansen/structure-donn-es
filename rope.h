@@ -8,16 +8,16 @@ typedef struct Rope{
     struct Rope* left;
     struct Rope* right;
     int size;
-    unsigned pointer;
+    int weight;
     } Rope;
 
 size_t rope_len(Rope* rope);
 
-void rope_insert_at();
+void rope_insert_at(Rope* rope, char base, size_t pos);
 
 char* substring(int pos, int len, int c, char* base);
 
-inner_string research(Rope* rope, long int i);
+Rope* research(Rope* rope, long int i);
 
 void recursive(char* base, Rope* rope);
 

@@ -6,7 +6,7 @@ typedef struct inner_string {
     char content;
 } inner_string;
 
-inner_string* convert(char* var);
+inner_string* convert(char* var, int pointeur);
 
 int inner_len(inner_string base);
 

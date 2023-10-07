@@ -1,0 +1,3 @@
+Refaire les poids (pointeur) des noeuds
+Refaire la fonction de recherche
+Mettre les pointeurs dans la fonction recursive (le poids est la position du premier caractère du noeud para rapport a la chaine totale)
