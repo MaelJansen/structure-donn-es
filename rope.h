@@ -13,7 +13,7 @@ typedef struct Rope{
 
 size_t rope_len(Rope* rope);
 
-void rope_insert_at(Rope* rope, char base, size_t pos);
+void rope_insert_at(Rope* rope, char *base, size_t pos);
 
 char* substring(int pos, int len, int c, char* base);
 
