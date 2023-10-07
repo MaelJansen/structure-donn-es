@@ -14,7 +14,7 @@ char* substring(int pos, int len, int c, char* base){
     return substring;
 }
 
-void insert_new_string(Rope* rope, char base, int pos){
+void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
         char* partOne = malloc(sizeof(rope->node_content->content));
         partOne = substring(0, insert, 0, rope->node_content->content);
@@ -28,7 +28,7 @@ void insert_new_string(Rope* rope, char base, int pos){
         free(final);
 }
 
-void rope_insert_at(Rope* rope, char base, size_t pos){
+void rope_insert_at(Rope* rope, char *base, size_t pos){
     /* Permet d'insérer un élément dans la rope a une position donner (dans la chaine de caractères)*/
     int posInt = (int)pos;
     if (rope->left == NULL) {
