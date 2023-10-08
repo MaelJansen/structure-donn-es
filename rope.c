@@ -20,10 +20,10 @@ void insert_new_string(Rope* rope, char *base, int pos){
         partOne = substring(0, insert, 0, rope->node_content->content);
         char* partTwo = malloc(sizeof(rope->node_content->content));
         partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
-        char* final = malloc(sizeof(rope->node_content->content + base));
-        final = strcat(*partOne, base);
+        char* final = malloc(sizeof(strcat(rope->node_content->content, base)));
+        final = strcat(partOne, base);
         final = strcat(final, partTwo);
-        rope->node_content->content = *final;
+        rope->node_content->content = final;
         free(partOne);
         free(partTwo);
         free(final);
@@ -54,6 +54,7 @@ void recursive(char* base, Rope* rope){
     }
     Rope* rope_new = malloc(sizeof(Rope)); //a voir si il faut laisser rope_new ou utilisé rope
     rope_new->node_content = convert(base, 1);
+    rope_new->weight = 0;
 }
 
 int check_left(Rope* rope){
@@ -84,9 +85,9 @@ void assign_weight(Rope* rope){
     if(rope->left == NULL){
         rope->weight = strlen(rope->node_content->content);
     } else {
-        if (rope->left != NULL && rope->left->weight != NULL){
+        if (rope->left != NULL && rope->left->weight != 0){
             assign_weight(rope->left);
-        } else if (rope->right != NULL && rope->right->weight != NULL){
+        } else if (rope->right != NULL && rope->right->weight != 0){
             assign_weight(rope->right);
         }
         weight += check_left(rope);
