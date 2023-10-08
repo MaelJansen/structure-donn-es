@@ -21,8 +21,8 @@ void insert_new_string(Rope* rope, char *base, int pos){
         char* partTwo = malloc(sizeof(rope->node_content->content));
         partTwo = substring(insert +1, strelen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
         char* final = malloc(sizeof(rope->node_content->content + base));
-        final = partOne + base + partTwo;
-        rope->node_content->content = final;
+        final = (char)partOne + (char)base + (char)partTwo;
+        rope->node_content->content = (char)final;
         free(partOne);
         free(partTwo);
         free(final);
@@ -81,7 +81,7 @@ size_t rope_len(Rope* rope){
 void assign_weight(Rope* rope){
     int weight = 0;
     if(rope->left == NULL){
-        rope->weight = strlen(rope->node_content->content);
+        rope->weight = strlen(*rope->node_content->content);
     } else {
         if (rope->left != NULL && rope->left->weight != NULL){
             assign_weight(rope->left);
