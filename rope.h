@@ -4,7 +4,7 @@
 #include "inner_string.h"
 
 typedef struct Rope{
-    inner_string node_content;
+    inner_string* node_content;
     struct Rope* left;
     struct Rope* right;
     int size;
