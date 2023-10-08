@@ -19,9 +19,10 @@ void insert_new_string(Rope* rope, char *base, int pos){
         char* partOne = malloc(sizeof(rope->node_content->content));
         partOne = substring(0, insert, 0, rope->node_content->content);
         char* partTwo = malloc(sizeof(rope->node_content->content));
-        partTwo = substring(insert +1, strelen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
+        partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
         char* final = malloc(sizeof(rope->node_content->content + base));
-        final = *partOne + *base + *partTwo;
+        final = strcat(*partOne, base);
+        final = strcat(final, partTwo);
         rope->node_content->content = *final;
         free(partOne);
         free(partTwo);
@@ -51,8 +52,8 @@ void recursive(char* base, Rope* rope){
         recursive(substring(0, strlen(base)/2, 0, base), rope->left);
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
     }
-    Rope* rope = malloc(sizeof(Rope));
-    rope->node_content = convert(base, 1);
+    Rope* rope_new = malloc(sizeof(Rope)); //a voir si il faut laisser rope_new ou utilisé rope
+    rope_new->node_content = convert(base, 1);
 }
 
 int check_left(Rope* rope){

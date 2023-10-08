@@ -3,7 +3,7 @@
 
 typedef struct inner_string {
     int pointeur;
-    char content;
+    char* content;
 } inner_string;
 
 inner_string* convert(char* var, int pointeur);
