@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-Wall -Werror -O3 -DNDEBUG
-#CFLAGS=-Wall -Werror -g
+#CFLAGS=-Wall -Werror -O3 -DNDEBUG
+CFLAGS=-Wall -Werror -g
 
 launch_bench: bench
 	./bench | tee bench.csv
