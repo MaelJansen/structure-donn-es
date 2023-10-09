@@ -47,7 +47,7 @@ void rope_insert_at(Rope* rope, char *base, size_t pos){
 
 void recursive(char* base, Rope* rope){
     /* Permet de créer tout les fils d'une rope */
-    if (strlen(*base) > 7){
+    if (strlen(base) > 7){
         if (rope->left != NULL){
             rope->left = malloc(sizeof(Rope));
         } else if (rope->right != NULL){
