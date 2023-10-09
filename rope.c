@@ -48,13 +48,18 @@ void rope_insert_at(Rope* rope, char *base, size_t pos){
 void recursive(char* base, Rope* rope){
     /* Permet de créer tout les fils d'une rope */
     if (strlen(base) > 7){
+        if (rope->left != NULL){
+            rope->left = malloc(sizeof(Rope));
+        } else if (rope->right != NULL){
+            rope->right = malloc(sizeof(Rope));
+        }
         /* If the lenght > 7 : divide the string into 2 and recall the function with the new parts on the different childs*/
         recursive(substring(0, strlen(base)/2, 0, base), rope->left);
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
-    }
-    Rope* rope_new = malloc(sizeof(Rope)); //a voir si il faut laisser rope_new ou utilisé rope
-    rope_new->node_content = convert(base, 1);
-    rope_new->weight = 0;
+    } 
+    //a voir si il faut laisser rope_new ou utilisé rope
+    rope->node_content = convert(base, 1);
+    rope->weight = 0;
 }
 
 int check_left(Rope* rope){
