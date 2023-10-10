@@ -1,9 +1,9 @@
-#include "rope.h"
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include "rope.h"
 
 // gcc bench.c -O3  -Wall -Wextra &&  ./a.out | tee bench.csv
 

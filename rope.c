@@ -104,9 +104,12 @@ void assign_weight(Rope* rope){
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
     Rope* root = malloc(sizeof(Rope));
-    recursive(base, root);
-    assign_weight(root);
-    return root;
+    if (root != NULL){
+        recursive(base, root);
+        assign_weight(root);
+        return root;
+    } else
+        return NULL;
 }
 
 void rope_delete(Rope* rope){
