@@ -6,10 +6,6 @@
 char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
     char* substring = malloc(sizeof(len +1));
-    if (substring == NULL) {
-        perror("Unable to allocate memory");
-        exit(EXIT_FAILURE);
-    }
     strncpy(substring, base + pos, len);
     substring += '\0';
     return substring;
@@ -20,10 +16,6 @@ void insert_new_string(Rope* rope, char *base, int pos){
         char* partOne = substring(0, insert, 0, rope->node_content->content);
         char* partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
         char* final = malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
-        if (final == NULL) {
-            perror("Unable to allocate memory");
-            exit(EXIT_FAILURE);
-        }
         strcpy(final, partOne);
         strcat(final, base);
         strcat(final, partTwo);
@@ -53,10 +45,6 @@ void recursive(char* base, Rope* rope){
     if (strlen(base) > 7){
         if (rope->left != NULL){
             rope->left = malloc(sizeof(Rope));
-            if( rope->left == NULL){
-                perror("Unable to allocate memory");
-                exit(EXIT_FAILURE);
-            }
         } else if (rope->right != NULL){
             rope->right = malloc(sizeof(Rope));
         }
