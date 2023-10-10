@@ -20,8 +20,6 @@ void insert_new_string(Rope* rope, char *base, int pos){
         strcat(final, base);
         strcat(final, partTwo);
         rope->node_content->content = final;
-        free(partOne);
-        free(partTwo);
 }
 
 void rope_insert_at(Rope* rope, char *base, size_t pos){
@@ -43,11 +41,8 @@ void rope_insert_at(Rope* rope, char *base, size_t pos){
 void recursive(char* base, Rope* rope){
     /* Permet de créer tout les fils d'une rope */
     if (strlen(base) > 7){
-        if (rope->left != NULL){
-            rope->left = malloc(sizeof(Rope));
-        } else if (rope->right != NULL){
-            rope->right = malloc(sizeof(Rope));
-        }
+        rope->left = malloc(sizeof(Rope));
+        rope->right = malloc(sizeof(Rope));
         /* If the lenght > 7 : divide the string into 2 and recall the function with the new parts on the different childs*/
         recursive(substring(0, strlen(base)/2, 0, base), rope->left);
         recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
