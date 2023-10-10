@@ -52,7 +52,7 @@ void recursive(char* base, Rope* rope){
             rope->left = malloc(sizeof(Rope));
             if( rope->left == NULL){
                 perror("Unable to allocate memory");
-                return (EXIT_FAILURE);
+                exit(EXIT_FAILURE);
             }
         } else if (rope->right != NULL){
             rope->right = malloc(sizeof(Rope));
