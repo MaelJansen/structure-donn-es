@@ -5,28 +5,31 @@
 
 char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
-    char* substring = malloc(sizeof(base));
-    while (c < len) {
-        substring += base[pos + c-1];
-        c++;
+    char* substring = malloc(sizeof(len +1));
+    if (substring == NULL) {
+        perror("Unable to allocate memory");
+        exit(EXIT_FAILURE);
     }
+    strncpy(substring, base + pos, len);
     substring += '\0';
     return substring;
 }
 
 void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
-        char* partOne = malloc(sizeof(rope->node_content->content));
-        partOne = substring(0, insert, 0, rope->node_content->content);
-        char* partTwo = malloc(sizeof(rope->node_content->content));
-        partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
-        char* final = malloc(sizeof(strcat(rope->node_content->content, base)));
-        final = strcat(partOne, base);
-        final = strcat(final, partTwo);
+        char* partOne = substring(0, insert, 0, rope->node_content->content);
+        char* partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
+        char* final = malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
+        if (final == NULL) {
+            perror("Unable to allocate memory");
+            exit(EXIT_FAILURE);
+        }
+        strcpy(final, partOne);
+        strcat(final, base);
+        strcat(final, partTwo);
         rope->node_content->content = final;
         free(partOne);
         free(partTwo);
-        free(final);
 }
 
 void rope_insert_at(Rope* rope, char *base, size_t pos){
