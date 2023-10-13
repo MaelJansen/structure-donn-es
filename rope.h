@@ -19,7 +19,7 @@ char* substring(int pos, int len, int c, char* base);
 
 Rope* research(Rope* rope, long int i);
 
-void recursive(char* base, Rope* rope);
+Rope* recursive(char* base);
 
 Rope* rope_new(char* base);
 

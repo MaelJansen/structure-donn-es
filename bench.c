@@ -55,7 +55,6 @@ void bench_string(char **s, char *base, size_t nb_insertions)
 int main()
 {
     srand(time(NULL));
-
     const size_t nb_chars = 10000;
     const size_t nb_insertions = 1000;
     const size_t nb_repetitions = 50;

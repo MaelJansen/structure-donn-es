@@ -6,8 +6,10 @@
 char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
     char* substring = malloc(sizeof(len +1));
-    strncpy(substring, base + pos, len);
-    substring += '\0';
+    for (int i = 0; i < len; i++){
+        substring[i] = base[pos + i];
+    }
+    substring[len] = '\0';
     return substring;
 }
 
@@ -22,38 +24,25 @@ void insert_new_string(Rope* rope, char *base, int pos){
         rope->node_content->content = final;
 }
 
-void rope_insert_at(Rope* rope, char *base, size_t pos){
-    /* Permet d'insérer un élément dans la rope a une position donner (dans la chaine de caractères)*/
-    int posInt = (int)pos;
-    if (rope->left == NULL) {
-        insert_new_string(rope, base, posInt);
-    } else {
-        if (posInt < rope->weight && rope->left != NULL){
-            rope_insert_at(rope->left, base, posInt);
-        } else if (rope->right != NULL){
-            rope_insert_at(rope->right, base, posInt);
-        } else {
-            insert_new_string(rope, base, posInt);
-        }
-    }
-    assign_weight(rope);
-}
-
-void recursive(char* base, Rope* rope){
+Rope* recursive(char* base){
     /* Permet de créer tout les fils d'une rope */
+    Rope* rope = malloc(sizeof(Rope));
+    rope = &(Rope) {
+        .left = NULL,
+        .right = NULL,
+        .node_content = NULL,
+        .weight = 0,
+        .size = 0
+        };
     if (strlen(base) > 7){
-        if (rope->left != NULL){
-            rope->left = malloc(sizeof(Rope));
-        } else if (rope->right != NULL){
-            rope->right = malloc(sizeof(Rope));
-        }
-        /* If the lenght > 7 : divide the string into 2 and recall the function with the new parts on the different childs*/
-        recursive(substring(0, strlen(base)/2, 0, base), rope->left);
-        recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), rope->right);
+        rope->left = recursive(substring(0, strlen(base)/2, 0, base));
+        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
     } 
+    printf("*%s\n", base);
     //a voir si il faut laisser rope_new ou utilisé rope
     rope->node_content = convert(base, 1);
     rope->weight = 0;
+    return rope;
 }
 
 int check_left(Rope* rope){
@@ -98,12 +87,26 @@ void assign_weight(Rope* rope){
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
     Rope* root = malloc(sizeof(Rope));
-    if (root != NULL){
-        recursive(base, root);
-        assign_weight(root);
-        return root;
-    } else
-        return NULL;
+    root = &(Rope) {
+        .left = NULL,
+        .right = NULL,
+        .node_content = NULL,
+        .weight = 0,
+        .size = 0
+    };
+    if(strlen(base) >= 1){
+        if (root != NULL && strlen(base) > 7){
+            root->left = recursive(substring(0, strlen(base)/2, 0, base));
+            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
+            assign_weight(root);
+            return root;
+        } else if (root != NULL){
+            root->left = recursive(base);
+            assign_weight(root);
+            return root;
+        }
+    }
+    return NULL;
 }
 
 void rope_delete(Rope* rope){
@@ -114,4 +117,21 @@ void rope_delete(Rope* rope){
         rope_delete(rope->right);
     }
     free(rope);
+}
+
+void rope_insert_at(Rope* rope, char *base, size_t pos){
+    /* Permet d'insérer un élément dans la rope a une position donner (dans la chaine de caractères)*/
+    int posInt = (int)pos;
+    if (rope->left == NULL) {
+        insert_new_string(rope, base, posInt);
+    } else {
+        if (posInt < rope->weight && rope->left != NULL){
+            rope_insert_at(rope->left, base, posInt);
+        } else if (rope->right != NULL){
+            rope_insert_at(rope->right, base, posInt);
+        } else {
+            insert_new_string(rope, base, posInt);
+        }
+    }
+    assign_weight(rope);
 }
