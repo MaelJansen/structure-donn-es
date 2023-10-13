@@ -36,6 +36,7 @@ void rope_insert_at(Rope* rope, char *base, size_t pos){
             insert_new_string(rope, base, posInt);
         }
     }
+    assign_weight(rope);
 }
 
 void recursive(char* base, Rope* rope){
