@@ -72,8 +72,8 @@ size_t rope_len(Rope* rope){
 }
 
 void assign_weight(Rope* rope){
-    int weight = 0;
-    printf("*%d\r", rope->left != NULL);
+    int weight = 0; 
+    printf("%d\r", rope);
     if (rope->left != NULL) {
         assign_weight(rope->left);
         if (rope->right != NULL){
