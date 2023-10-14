@@ -100,15 +100,14 @@ Rope* rope_new(char* base){
         if (root != NULL && strlen(base) > 7){
             root->left = recursive(substring(0, strlen(base)/2, 0, base));
             root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
-            assign_weight(root);
-            return root;
+            
         } else if (root != NULL){
             root->left = recursive(base);
-            assign_weight(root);
-            return root;
+            
         }
     }
-    return NULL;
+    assign_weight(root);
+    return root;
 }
 
 void rope_delete(Rope* rope){
