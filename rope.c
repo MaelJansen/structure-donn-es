@@ -20,8 +20,7 @@ char* substring(int pos, int len, int c, char* base){
    	    }*/
         strncpy(substring, base+(pos-1), len);
         strcat(substring, "\0");
-        base = substring;
-        free(substring);
+        return substring;
    }
    return base;
 }
@@ -49,7 +48,6 @@ Rope* recursive(char* base, int pos){
         .size = 0,
         .last = true
         };
-    printf("*%s", base);
     if (strlen(base) > 7){
         rope->last = false;
         rope->left = recursive(substring(0, strlen(base)/2, 0, base), 0 + pos);
