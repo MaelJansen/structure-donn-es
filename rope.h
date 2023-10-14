@@ -9,6 +9,7 @@ typedef struct Rope{
     struct Rope* right;
     int size;
     int weight;
+    bool last;
     } Rope;
 
 size_t rope_len(Rope* rope);

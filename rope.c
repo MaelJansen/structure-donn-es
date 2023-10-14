@@ -38,9 +38,11 @@ Rope* recursive(char* base){
         .right = NULL,
         .node_content = NULL,
         .weight = 0,
-        .size = 0
+        .size = 0,
+        .last = true
         };
     if (strlen(base) > 7){
+        rope->last = false;
         rope->left = recursive(substring(0, strlen(base)/2, 0, base));
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
     } 
@@ -73,7 +75,7 @@ size_t rope_len(Rope* rope){
 
 void assign_weight(Rope* rope){
     int weight = 0;
-    if (rope->left != NULL) {
+    if (rope->last != true) {
         assign_weight(rope->left);
         if (rope->right != NULL){
             assign_weight(rope->right);
@@ -81,9 +83,8 @@ void assign_weight(Rope* rope){
         weight += check_left(rope);
         weight += check_right(rope);
         rope->weight = weight;
-    } else {
-        rope->weight = strlen(rope->node_content->content);
     }
+    rope->weight = strlen(rope->node_content->content);
 }
 
 Rope* rope_new(char* base){
@@ -94,7 +95,8 @@ Rope* rope_new(char* base){
         .right = NULL,
         .node_content = NULL,
         .weight = 0,
-        .size = 0
+        .size = 0,
+        .last = true
     };
     if(strlen(base) >= 1){
         if (root != NULL && strlen(base) > 7){
