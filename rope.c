@@ -10,7 +10,10 @@ char* substring(int pos, int len, int c, char* base){
     	char* substring = malloc((len +1) * sizeof(char));
     	if (substring != NULL) {
     		for (int i = 0; i <= len; i++){
-        		strcat(substring, base[pos + i]);
+                char* added = malloc(sizeof(char));
+                added = base[pos + i];
+        		strcat(substring, added);
+                free(added);
     		}
     		substring[len] = '\0';
     		return substring;
