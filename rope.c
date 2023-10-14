@@ -73,7 +73,7 @@ size_t rope_len(Rope* rope){
 
 void assign_weight(Rope* rope){
     int weight = 0;
-    if (rope->left) {
+    if (rope->left != NULL) {
         assign_weight(rope->left);
         if (rope->right != NULL){
             assign_weight(rope->right);
@@ -105,7 +105,7 @@ Rope* rope_new(char* base){
             root->left = recursive(base);
         }
     }
-    assign_weight(root);
+    //assign_weight(root);
     return root;
 }
 
