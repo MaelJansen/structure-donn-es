@@ -52,10 +52,12 @@ Rope* recursive(char* base){
 
 int check_left(Rope* rope){
     if (rope->left != NULL){
-        printf("*%d\n", rope->left->weight);
         return rope->left->weight;
     }
-    return rope->weight;
+    if(rope->weight != NULL){
+        return rope->weight;
+    }
+    return 0;
 }
 
 int check_right(Rope* rope){
@@ -66,7 +68,10 @@ int check_right(Rope* rope){
     if (res != 0){
         return res;
     }
-    return rope->weight;
+    if(rope->weight != NULL){
+        return rope->weight;
+    }
+    return 0;
 }
 
 size_t rope_len(Rope* rope){
@@ -85,13 +90,9 @@ void assign_weight(Rope* rope){
             assign_weight(rope->right);
         }
         // si le doit est null
-        printf("*%s\n", "test");
         weight += check_left(rope);
-        printf("*%s\n", "test2");
         weight += check_right(rope);
-        printf("*%s\n", "test3");
         rope->weight = weight;
-        printf("*%s\n", "test4");
     }
 }
 
