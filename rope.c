@@ -5,12 +5,17 @@
 
 char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
-    char* substring = malloc(sizeof(len +1));
-    for (int i = 0; i < len; i++){
-        substring[i] = base[pos + i];
-    }
-    substring[len] = '\0';
-    return substring;
+    if (strlen(base)>len){
+    	char* substring = malloc((len +1) * sizeof(char));
+    	if (substring != NULL) {
+    		for (int i = 0; i <= len; i++){
+        		substring[i] = base[pos + i];
+    		}
+    		substring[len] = '\0';
+    		return substring;
+   	}
+   }
+   return base;
 }
 
 void insert_new_string(Rope* rope, char *base, int pos){
