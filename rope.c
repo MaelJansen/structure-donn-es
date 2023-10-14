@@ -86,6 +86,7 @@ void assign_weight(Rope* rope){
         // si le doit est null
         printf("*%s\n", "test");
         weight += check_left(rope);
+        printf("*%s\n", "test2");
         weight += check_right(rope);
         rope->weight = weight;
     }
