@@ -73,10 +73,11 @@ size_t rope_len(Rope* rope){
 
 void assign_weight(Rope* rope){
     int weight = 0;
-    printf("*%s\r", rope->left->node_content->content);
     if (rope->left != NULL) {
+        printf("*%s\r", "test1");
         assign_weight(rope->left);
         if (rope->right != NULL){
+        printf("*%s\r", "test2");
             assign_weight(rope->right);
         }
         weight += check_left(rope);
