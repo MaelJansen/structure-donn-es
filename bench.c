@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <stdbool.h>
 #include "rope.h"
 
 // gcc bench.c -O3  -Wall -Wextra &&  ./a.out | tee bench.csv

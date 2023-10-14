@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include "rope.h"
 
 char* substring(int pos, int len, int c, char* base){
