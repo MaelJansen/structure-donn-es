@@ -108,7 +108,7 @@ Rope* rope_new(char* base){
             root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
             
         } else if (root != NULL){
-            root->left = recursive(base);
+            root->left = recursive(base, 0);
         }
     }
     assign_weight(root);

@@ -21,7 +21,7 @@ char* substring(int pos, int len, int c, char* base);
 
 Rope* research(Rope* rope, long int i);
 
-Rope* recursive(char* base);
+Rope* recursive(char* base, int pos);
 
 Rope* rope_new(char* base);
 
