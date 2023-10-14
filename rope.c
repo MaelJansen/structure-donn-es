@@ -88,7 +88,7 @@ void assign_weight(Rope* rope){
     if( rope->node_content != NULL){
         rope->weight = strlen(rope->node_content->content);
     } else {
-        reop->weight = 0;
+        rope->weight = 0;
     }
 }
 
