@@ -8,7 +8,7 @@ char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
     if (strlen(base)>len){
     	char* substring = malloc((len +1) * sizeof(char));
-        char* added = malloc(sizeof(char));
+        /*char* added = malloc(sizeof(char));
     	if (substring != NULL) {
     		for (int i = 0; i <= len; i++){
                 *added = base[pos + i];
@@ -17,7 +17,8 @@ char* substring(int pos, int len, int c, char* base){
     		substring[len] = '\0';
             free(added);
     		return substring;
-   	}
+   	    }*/
+        strncpy(substring, base+(pos-1), len);
    }
    return base;
 }
