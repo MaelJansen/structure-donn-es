@@ -105,7 +105,7 @@ Rope* rope_new(char* base){
             root->left = recursive(base);
         }
     }
-    //assign_weight(root);
+    assign_weight(root);
     return root;
 }
 
