@@ -52,26 +52,18 @@ Rope* recursive(char* base){
 
 int check_left(Rope* rope){
     if (rope->left != NULL){
-        return rope->left->weight;
+        return strlen(rope->left->node_content->content);
     }
-    if(rope->weight != NULL){
-        return rope->weight;
-    }
-    return 0;
+    return strlen(rope->node_content->content);
 }
 
 int check_right(Rope* rope){
     int res = 0;
     if (rope->right != NULL){
         res += check_right(rope->right);
-    }
-    if (res != 0){
         return res;
     }
-    if(rope->weight != NULL){
-        return rope->weight;
-    }
-    return 0;
+    return strlen(rope->node_content->content);
 }
 
 size_t rope_len(Rope* rope){
@@ -84,16 +76,16 @@ void assign_weight(Rope* rope){
     if(rope->left == NULL){
         rope->weight = strlen(rope->node_content->content);
     } else {
-        if (rope->left != NULL && rope->left->weight != 0){
+        if (rope->left != NULL){
             assign_weight(rope->left);
-        } else if (rope->right != NULL && rope->right->weight != 0){
+        } else if (rope->right != NULL){
             assign_weight(rope->right);
         }
         // si le doit est null
         weight += check_left(rope);
         weight += check_right(rope);
-        rope->weight = weight;
     }
+    rope->weight = weight;
 }
 
 Rope* rope_new(char* base){
