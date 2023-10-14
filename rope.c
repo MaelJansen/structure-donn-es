@@ -27,6 +27,7 @@ void insert_new_string(Rope* rope, char *base, int pos){
         strcat(final, base);
         strcat(final, partTwo);
         rope->node_content->content = final;
+        free(final);
 }
 
 Rope* recursive(char* base){
@@ -42,9 +43,7 @@ Rope* recursive(char* base){
     if (strlen(base) > 7){
         rope->left = recursive(substring(0, strlen(base)/2, 0, base));
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
-        free(rope);
     } 
-    printf("*%s\n", base);
     //a voir si il faut laisser rope_new ou utilisé rope
     rope->node_content = convert(base, 1);
     rope->weight = 0;
@@ -84,6 +83,8 @@ void assign_weight(Rope* rope){
         } else if (rope->right != NULL && rope->right->weight != 0){
             assign_weight(rope->right);
         }
+        // si le doit est null
+        printf("*%s\n", "test");
         weight += check_left(rope);
         weight += check_right(rope);
         rope->weight = weight;
