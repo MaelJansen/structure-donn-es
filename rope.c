@@ -31,7 +31,7 @@ void insert_new_string(Rope* rope, char *base, int pos){
         free(final);
 }
 
-Rope* recursive(char* base){
+Rope* recursive(char* base, int pos){
     /* Permet de créer tout les fils d'une rope */
     Rope* rope = malloc(sizeof(Rope));
     rope = &(Rope) {
@@ -44,11 +44,10 @@ Rope* recursive(char* base){
         };
     if (strlen(base) > 7){
         rope->last = false;
-        rope->left = recursive(substring(0, strlen(base)/2, 0, base));
-        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
+        rope->left = recursive(substring(0, strlen(base)/2, 0, base), 0 + pos);
+        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
     } 
-    //a voir si il faut laisser rope_new ou utilisé rope
-    rope->node_content = convert(base, 1);
+    rope->node_content = convert(base, pos);
     rope->weight = 0;
     return rope;
 }
@@ -105,8 +104,8 @@ Rope* rope_new(char* base){
     };
     if(strlen(base) >= 1){
         if (root != NULL && strlen(base) > 7){
-            root->left = recursive(substring(0, strlen(base)/2, 0, base));
-            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base));
+            root->left = recursive(substring(0, strlen(base)/2, 0, base), 0);
+            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
             
         } else if (root != NULL){
             root->left = recursive(base);
