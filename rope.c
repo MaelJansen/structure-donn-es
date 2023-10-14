@@ -48,16 +48,13 @@ Rope* recursive(char* base, int pos){
         .size = 0,
         .last = true
         };
-    if (base != NULL){
-        if (strlen(base) > 7){
-            rope->last = false;
-            rope->left = recursive(substring(0, strlen(base)/2, 0, base), 0 + pos);
-            rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
-        } 
-        rope->node_content = convert(base, pos);
-        rope->weight = 0;
-
-    }
+    if (strlen(base) > 7){
+        rope->last = false;
+        rope->left = recursive(substring(0, strlen(base)/2, 0, base), 0 + pos);
+        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
+    } 
+    rope->node_content = convert(base, pos);
+    rope->weight = 0;
     return rope;
 }
 
