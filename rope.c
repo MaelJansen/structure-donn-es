@@ -73,20 +73,16 @@ size_t rope_len(Rope* rope){
 
 void assign_weight(Rope* rope){
     int weight = 0;
-    if (rope != NULL){
-        if(rope->left == NULL){
-            rope->weight = strlen(rope->node_content->content);
-        } else {
-            if (rope->left != NULL){
-                assign_weight(rope->left);
-            } else if (rope->right != NULL){
-                assign_weight(rope->right);
-            }
-            // si le doit est null
-            weight += check_left(rope);
-            weight += check_right(rope);
+    if (rope->left != NULL) {
+        assign_weight(rope->left);
+        if (rope->right != NULL){
+            assign_weight(rope->right);
         }
+        weight += check_left(rope);
+        weight += check_right(rope);
         rope->weight = weight;
+    } else {
+        rope->weight = strlen(rope->node_content->content);
     }
 }
 
