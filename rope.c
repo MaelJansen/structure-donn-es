@@ -52,6 +52,7 @@ Rope* recursive(char* base){
 
 int check_left(Rope* rope){
     if (rope->left != NULL){
+        printf("*%d\n", rope->left->weight);
         return rope->left->weight;
     }
     return rope->weight;
