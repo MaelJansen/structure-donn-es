@@ -19,7 +19,8 @@ char* substring(int pos, int len, int c, char* base){
     		return substring;
    	    }*/
         strncpy(substring, base+(pos-1), len);
-        return substring;
+        base = substring;
+        free(substring);
    }
    return base;
 }
