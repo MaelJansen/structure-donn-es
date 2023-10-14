@@ -85,8 +85,11 @@ void assign_weight(Rope* rope){
         weight += check_right(rope);
         rope->weight = weight;
     }
-    printf("*%s\r", rope->node_content->content);
-    rope->weight = strlen(rope->node_content->content);
+    if( rope->node_content != NULL){
+        rope->weight = strlen(rope->node_content->content);
+    } else {
+        reop->weight = 0;
+    }
 }
 
 Rope* rope_new(char* base){
