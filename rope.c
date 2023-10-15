@@ -179,7 +179,7 @@ Rope* rope_new(char* base){
                 root->left = recursive(base, 0);
             }
         }
-        assign_weight(*root);
+        assign_weight(root);
         return root;
     } else {
         perror("Memory error on rope_new"); 
