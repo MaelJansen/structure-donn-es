@@ -132,7 +132,7 @@ size_t rope_len(Rope* rope){
  * 
  * rope : la rope dont pour laquelle on veut assigner les poids 
 **/
-void assign_weight(Rope* rope){
+void assign_weight(Rope rope){
     int weight = 0;
     if (rope->last != true) {
         if (rope->left != NULL){
@@ -179,7 +179,7 @@ Rope* rope_new(char* base){
                 root->left = recursive(base, 0);
             }
         }
-        assign_weight(root);
+        assign_weight(*root);
         return root;
     } else {
         perror("Memory error on rope_new"); 
