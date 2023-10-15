@@ -14,9 +14,12 @@
 char* substring(int pos, int len, char* base){
     if (strlen(base)>len){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
-        strncpy(substring, base+(pos-1), len);
         if (substring != NULL){
-        return substring;
+            strncpy(substring, base+(pos-1), len);
+            return substring;
+        } else {
+            perror("Memory error on substring"); 
+            exit(EXIT_FAILURE); 
         }
    }
    return base;
@@ -30,17 +33,20 @@ char* substring(int pos, int len, char* base){
  * pos : la position à laquelle on veut insérer la chaine de caractères dans la rope
 **/
 void insert_new_string(Rope* rope, char *base, int pos){
-        int insert = pos - rope->node_content->pointeur;
-        char* partOne = substring(0, insert, rope->node_content->content);
-        char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, rope->node_content->content);
-        char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
+    int insert = pos - rope->node_content->pointeur;
+    char* partOne = substring(0, insert, rope->node_content->content);
+    char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, rope->node_content->content);
+    char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
+    if (final != NULL){
         strcpy(final, partOne);
         strcat(final, base);
         strcat(final, partTwo);
         rope->node_content->content = final;
         free(final);
-        free(partOne);
-        free(partTwo);
+    } else {
+        perror("Memory error on insert_new_string"); 
+        exit(EXIT_FAILURE); 
+    }
 }
 
 /**
@@ -52,22 +58,27 @@ void insert_new_string(Rope* rope, char *base, int pos){
 **/
 Rope* recursive(char* base, int pos){
     Rope* rope = (Rope *) malloc(sizeof(Rope));
-    rope = &(Rope) {
-        .left = NULL,
-        .right = NULL,
-        .node_content = NULL,
-        .weight = 0,
-        .last = true
-        };
-    if (strlen(base) > 7){
-        rope->last = false;
-        rope->left = recursive(substring(0, strlen(base)/2, base), pos);
-        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+    if (rope != NULL){
+        rope = &(Rope) {
+            .left = NULL,
+            .right = NULL,
+            .node_content = NULL,
+            .weight = 0,
+            .last = true
+            };
+        if (strlen(base) > 7){
+            rope->last = false;
+            rope->left = recursive(substring(0, strlen(base)/2, base), pos);
+            rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+        } else {
+            rope->node_content = convert(base, pos);
+        }
+        rope->weight = 0;
+        return rope;
     } else {
-        rope->node_content = convert(base, pos);
+        perror("Memory error on recursive"); 
+        exit(EXIT_FAILURE); 
     }
-    rope->weight = 0;
-    return rope;
 }
 
 /**
@@ -171,7 +182,7 @@ Rope* rope_new(char* base){
         assign_weight(root);
         return root;
     } else {
-        perror("Memory error on recursive"); 
+        perror("Memory error on rope_new"); 
         exit(EXIT_FAILURE); 
     }
 }

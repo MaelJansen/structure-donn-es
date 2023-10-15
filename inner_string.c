@@ -11,7 +11,12 @@
 **/
 inner_string* convert(char* var, int pointeur){
     inner_string* res = (inner_string *)malloc(sizeof(inner_string));
-    res->content = var;
-    res->pointeur = pointeur;
-    return res;
+    if (res != NULL){
+        res->content = var;
+        res->pointeur = pointeur;
+        return res;
+    } else {
+        perror("Memory error on convert"); 
+        exit(EXIT_FAILURE); 
+    }
 }
