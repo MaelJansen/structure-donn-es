@@ -48,9 +48,9 @@ Rope* recursive(char* base, int pos){
         .size = 0,
         .last = true
         };
+    printf("*%s\n \n \n", base);
     if (strlen(base) > 7){
         rope->last = false;
-        printf("*%s\n \n \n", base);
         rope->left = recursive(substring(0, strlen(base)/2, 0, base), pos);
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
     }
