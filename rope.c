@@ -60,6 +60,10 @@ Rope* recursive(char* base, int pos){
 }
 
 int check_left(Rope* rope){
+        if (rope == NULL) {
+        return 0;
+    }
+
     if (rope->last != true){
         return check_left(rope->left);
     }
