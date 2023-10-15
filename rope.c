@@ -28,7 +28,7 @@ char* substring(int pos, int len, int c, char* base){
 void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
         char* partOne = substring(0, insert, 0, rope->node_content->content);
-        char* partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
+        char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, insert, rope->node_content->content);
         char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
         strcpy(final, partOne);
         strcat(final, base);
@@ -77,12 +77,11 @@ int check_right(Rope* rope){
 
 size_t rope_len(Rope* rope){
     /* Renvoie la taille de la chaine de caractère stockée*/
-    /*if (rope->left->last != true){
+    if (rope->left->last != true){
         return (size_t)(check_left(rope) + check_right(rope));
     } else {
         return (size_t)check_left(rope);
-    }*/
-    return 10;
+    }
 }
 
 void assign_weight(Rope* rope){
