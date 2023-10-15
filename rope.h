@@ -17,7 +17,7 @@ size_t rope_len(Rope* rope);
 
 void rope_insert_at(Rope* rope, char *base, size_t pos);
 
-char* substring(int pos, int len, int c, char* base);
+char* substring(int pos, int len, char* base);
 
 Rope* research(Rope* rope, long int i);
 

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "rope.h"
 
-char* substring(int pos, int len, int c, char* base){
+char* substring(int pos, int len, char* base){
     /* Renvoie un partie du string*/
     if (strlen(base)>len){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
@@ -18,8 +18,8 @@ char* substring(int pos, int len, int c, char* base){
 
 void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
-        char* partOne = substring(0, insert, 0, rope->node_content->content);
-        char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, insert, rope->node_content->content);
+        char* partOne = substring(0, insert, rope->node_content->content);
+        char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, rope->node_content->content);
         char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
         strcpy(final, partOne);
         strcat(final, base);
@@ -41,8 +41,8 @@ Rope* recursive(char* base, int pos){
         };
     if (strlen(base) > 7){
         rope->last = false;
-        rope->left = recursive(substring(0, strlen(base)/2, 0, base), pos);
-        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
+        rope->left = recursive(substring(0, strlen(base)/2, base), pos);
+        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, strlen(base)/2+1);
     }
     rope->node_content = convert(base, pos);
     rope->weight = 0;
@@ -108,9 +108,8 @@ Rope* rope_new(char* base){
     if(strlen(base) >= 1){
         root->last = false;
         if (root != NULL && strlen(base) > 7){
-            root->left = recursive(substring(0, strlen(base)/2, 0, base), 0);
-            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
-            
+            root->left = recursive(substring(0, strlen(base)/2, base), 0);
+            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
         } else if (root != NULL){
             root->left = recursive(base, 0);
         }
