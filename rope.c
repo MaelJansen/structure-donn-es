@@ -207,7 +207,8 @@ void rope_delete(Rope* rope){
 **/
 void rope_insert_at(Rope* rope, char *base, size_t pos){
     int posInt = (int)pos;
-    if (rope->left == NULL && rope->left->node_content->content != "") {
+    char * vide = "\0";
+    if (rope->left == NULL && !strcmp(rope->left->node_content->content, vide)) {
         insert_new_string(rope, base, posInt);
     } else {
         if (posInt < rope->weight && rope->left != NULL){
