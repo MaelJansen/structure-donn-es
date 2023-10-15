@@ -60,10 +60,6 @@ Rope* recursive(char* base, int pos){
 }
 
 int check_left(Rope* rope){
-        if (rope == NULL) {
-        return 0;
-    }
-
     if (rope->last != true){
         return check_left(rope->left);
     }
@@ -118,6 +114,7 @@ Rope* rope_new(char* base){
         .last = true
     };
     if(strlen(base) >= 1){
+        root->last = false;
         if (root != NULL && strlen(base) > 7){
             root->left = recursive(substring(0, strlen(base)/2, 0, base), 0);
             root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
