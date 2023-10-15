@@ -34,6 +34,7 @@ char* substring(int pos, int len, char* base){
 **/
 void insert_new_string(Rope* rope, char *base, int pos){
     int insert = pos - rope->node_content->pointeur;
+    printf("test");
     char* partOne = substring(1, insert, rope->node_content->content);
     char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, rope->node_content->content);
     char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
