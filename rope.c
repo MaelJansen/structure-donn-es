@@ -61,7 +61,7 @@ Rope* recursive(char* base, int pos){
 
 int check_left(Rope* rope){
     if (rope->last != true){
-        return check_left(rope->left);
+        return check_left(rope.left);
     }
     return strlen(rope->node_content->content);
 }
@@ -77,7 +77,11 @@ int check_right(Rope* rope){
 
 size_t rope_len(Rope* rope){
     /* Renvoie la taille de la chaine de caractère stockée*/
-    return (size_t)(check_left(rope) + check_right(rope));
+    if (rope->left->last != true){
+        return (size_t)(check_left(rope) + check_right(rope));
+    } else {
+        return (size_t)check_left(rope);
+    }
 }
 
 void assign_weight(Rope* rope){
