@@ -34,7 +34,7 @@ char* substring(int pos, int len, char* base){
 **/
 void insert_new_string(Rope* rope, char *base, int pos){
     int insert = pos - rope->node_content->pointeur;
-    char* partOne = substring(0, insert, rope->node_content->content);
+    char* partOne = substring(1, insert, rope->node_content->content);
     char* partTwo = substring(insert, strlen(rope->node_content->content) - insert, rope->node_content->content);
     char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
     if (final != NULL){
@@ -68,7 +68,7 @@ Rope* recursive(char* base, int pos){
             };
         if (strlen(base) > 7){
             rope->last = false;
-            rope->left = recursive(substring(0, strlen(base)/2, base), pos);
+            rope->left = recursive(substring(1, strlen(base)/2, base), pos);
             rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
         } else {
             rope->node_content = convert(base, pos);
@@ -176,7 +176,7 @@ Rope* rope_new(char* base){
                 printf("Sous chaine 1 : %s \n\n", substring(1, strlen(base)/2, base));
                 printf("base 2        : %s \n\n", base);
                 printf("Sous chaine 2 : %s \n\n", substring((strlen(base)/2)+1, strlen(base)/2, base));
-                root->left = recursive(substring(0, strlen(base)/2, base), 0);
+                root->left = recursive(substring(1, strlen(base)/2, base), 0);
                 root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
                 
             } else if (root != NULL){
