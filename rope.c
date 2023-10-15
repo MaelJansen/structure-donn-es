@@ -4,8 +4,14 @@
 #include <stdbool.h>
 #include "rope.h"
 
+/**
+ * Une fonction substring qui permet de récupérer un segment de la chaine de caractères passée en paramètres
+ * 
+ * pos : la position a partir de laquell on veut copier la chaine
+ * len : le nombre de caracère que l'on veut copier
+ * base : la chaine de caractère qui dont on veut extraire une partie
+**/
 char* substring(int pos, int len, char* base){
-    /* Renvoie un partie du string*/
     if (strlen(base)>len){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
         strncpy(substring, base+(pos-1), len);
@@ -16,6 +22,9 @@ char* substring(int pos, int len, char* base){
    return base;
 }
 
+/**
+ * Une fonction insert_new_string qui
+**/
 void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
         char* partOne = substring(0, insert, rope->node_content->content);
@@ -36,7 +45,6 @@ Rope* recursive(char* base, int pos){
         .right = NULL,
         .node_content = NULL,
         .weight = 0,
-        .size = 0,
         .last = true
         };
     if (strlen(base) > 7){
@@ -103,7 +111,6 @@ Rope* rope_new(char* base){
             .right = NULL,
             .node_content = NULL,
             .weight = 0,
-            .size = 0,
             .last = true
         };
         if(strlen(base) >= 1){
@@ -141,11 +148,9 @@ void rope_insert_at(Rope* rope, char *base, size_t pos){
         insert_new_string(rope, base, posInt);
     } else {
         if (posInt < rope->weight && rope->left != NULL){
-            rope_insert_at(rope->left, base, posInt);
+            rope_insert_at(rope->left, base, pos);
         } else if (rope->right != NULL){
-            rope_insert_at(rope->right, base, posInt);
-        } else {
-            insert_new_string(rope, base, posInt);
+            rope_insert_at(rope->right, base, pos);
         }
     }
     assign_weight(rope);

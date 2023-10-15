@@ -8,7 +8,6 @@ typedef struct Rope{
     inner_string* node_content;
     struct Rope* left;
     struct Rope* right;
-    int size;
     int weight;
     bool last;
     } Rope;
