@@ -50,6 +50,7 @@ Rope* recursive(char* base, int pos){
         };
     if (strlen(base) > 7){
         rope->last = false;
+        printf("*%d\r", rope->last);
         rope->left = recursive(substring(0, strlen(base)/2, 0, base), pos);
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
     }
