@@ -59,7 +59,7 @@ Rope* recursive(char* base, int pos){
 }
 
 int check_left(Rope* rope){
-    if (rope->left != NULL){
+    if (rope->last != true){
         return strlen(rope->left->node_content->content);
     }
     return strlen(rope->node_content->content);
