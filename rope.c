@@ -23,7 +23,11 @@ char* substring(int pos, int len, char* base){
 }
 
 /**
- * Une fonction insert_new_string qui
+ * Une fonction insert_new_string qui permet d'insérer une chaine de carctère dans une rope a une position donnée
+ * 
+ * rope : la rope dans laquelle on veut insérer la chaine de caractères
+ * base : la chaine de caractères que l'on veut insérer dans la rope
+ * pos : la position à laquelle on veut insérer la chaine de caractères dans la rope
 **/
 void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
@@ -35,6 +39,8 @@ void insert_new_string(Rope* rope, char *base, int pos){
         strcat(final, partTwo);
         rope->node_content->content = final;
         free(final);
+        free(partOne);
+        free(partTwo);
 }
 
 Rope* recursive(char* base, int pos){
