@@ -59,13 +59,11 @@ void insert_new_string(Rope* rope, char *base, int pos){
 Rope* recursive(char* base, int pos){
     Rope* rope = (Rope *) malloc(sizeof(Rope));
     if (rope != NULL){
-        rope = &(Rope) {
-            .left = NULL,
-            .right = NULL,
-            .node_content = NULL,
-            .weight = 0,
-            .last = true
-            };
+        rope->left = NULL,
+        rope->right = NULL,
+        rope->node_content = NULL,
+        rope->weight = 0,
+        rope->last = true
         if (strlen(base) > 7){
             rope->last = false;
             rope->left = recursive(substring(1, strlen(base)/2, base), pos);
