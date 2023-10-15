@@ -55,13 +55,13 @@ Rope* recursive(char* base, int pos){
     }
     rope->node_content = convert(base, pos);
     printf("*%s\r", rope->node_content->content);
-    printf("*%d\r", "test                                   ");
     rope->weight = 0;
     return rope;
 }
 
 int check_left(Rope* rope){
     if (rope->last != true){
+        printf("*%s\r", rope->left->node_content->content);
         return strlen(rope->left->node_content->content);
     }
     return strlen(rope->node_content->content);
