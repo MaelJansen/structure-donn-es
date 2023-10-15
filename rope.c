@@ -135,7 +135,6 @@ size_t rope_len(Rope* rope){
 void assign_weight(Rope* rope){
     int weight = 0;
     if (rope->last != true) {
-        printf("%s\n", "test");
         if (rope->left != NULL){
             assign_weight(rope->left);
         }
@@ -175,10 +174,10 @@ Rope* rope_new(char* base){
             if (strlen(base) > 7){
                 printf("%s \n\n", base);
                 printf("%s \n\n", substring(0, strlen(base)/2, base));
-                printf("%s \n\n", substring((strlen(base)/2)+1, strlen(base)/2, base));
+                printf("%s \n\n", substring((strlen(base)/2), strlen(base)/2, base));
                 printf("%s", "testA");
                 root->left = recursive(substring(0, strlen(base)/2, base), 0);
-                root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+                root->right = recursive(substring((strlen(base)/2), strlen(base)/2, base), strlen(base)/2+1);
                 
             } else if (root != NULL){
                 root->left = recursive(base, 0);
