@@ -18,8 +18,8 @@ char* substring(int pos, int len, char* base){
             strncpy(substring, base+(pos-1), len);
             return substring;
         } else {
-            perror("Memory error on substring"); 
-            exit(EXIT_FAILURE); 
+            perror("Memory error on substring");
+            exit(EXIT_FAILURE);
         }
    }
    return base;
@@ -76,8 +76,8 @@ Rope* recursive(char* base, int pos){
         rope->weight = 0;
         return rope;
     } else {
-        perror("Memory error on recursive"); 
-        exit(EXIT_FAILURE); 
+        perror("Memory error on recursive");
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -135,7 +135,7 @@ size_t rope_len(Rope* rope){
 void assign_weight(Rope* rope){
     int weight = 0;
     if (rope->last != true) {
-        printf("*%s\n", "test");
+        printf("%s\n", "test");
         if (rope->left != NULL){
             assign_weight(rope->left);
         }
@@ -172,7 +172,10 @@ Rope* rope_new(char* base){
         };
         if(strlen(base) >= 1){
             root->last = false;
-            if (root != NULL && strlen(base) > 7){
+            if (strlen(base) > 7){
+                print("%s", base);
+                print("%s", substring(0, strlen(base)/2, base));
+                print("%s", substring((strlen(base)/2)+1, strlen(base)/2, base));
                 root->left = recursive(substring(0, strlen(base)/2, base), 0);
                 root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
                 
