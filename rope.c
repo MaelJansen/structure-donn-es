@@ -51,7 +51,6 @@ void insert_new_string(Rope* rope, char *base, int pos){
  * pos : la position du premier caractère dans la rope par rapport à la chaine de caractères
 **/
 Rope* recursive(char* base, int pos){
-    /* Permet de créer tout les fils d'une rope */
     Rope* rope = (Rope *) malloc(sizeof(Rope));
     rope = &(Rope) {
         .left = NULL,
@@ -72,9 +71,10 @@ Rope* recursive(char* base, int pos){
 }
 
 /**
- *
+ * La fonction check_left qui permet d'avoir le poids du noeuds de gauche
+ * (égale a la taille de ça chaine de caractères si il est le dernier sur la gauche)
  * 
- * 
+ * rope : la rope dont on veut la valeur du fils gauche
 **/
 int check_left(Rope* rope){
     if (rope->last != true){
@@ -83,17 +83,32 @@ int check_left(Rope* rope){
     return strlen(rope->node_content->content);
 }
 
+/**
+ * La fonction check_right qui permet d'avoir les poids des noeuds des fils de droite
+ * (égale à la somme des poids des fils de droite) 
+ * 
+ * rope : la rope dont on veut la valeur du fils droit
+**/
 int check_right(Rope* rope){
     int res = 0;
     if (rope->right != NULL){
         res += check_right(rope->right);
-        return res;
+        if (rope->right->left != NULL){
+           res += check_left(rope->right);
+        }
+    } else{
+        res = strlen(rope->node_content->content);
     }
-    return strlen(rope->node_content->content);
+    return res;
 }
 
+/**
+ * La fonction rope_len qui permet d'avoir la taille de toute la rope
+ * (de la chaine de caractères qui est dedans)
+ * 
+ * rope : la rope dont on veut savoir la taille
+**/
 size_t rope_len(Rope* rope){
-    /* Renvoie la taille de la chaine de caractère stockée*/
     if (rope->left->last != true){
         return (size_t)(check_left(rope) + check_right(rope));
     } else {
@@ -101,6 +116,11 @@ size_t rope_len(Rope* rope){
     }
 }
 
+/**
+ * La fonction assign_weight qui permet d'assigner les poids de la rope
+ * 
+ * rope : la rope dont pour laquelle on veut assigner les poids 
+**/
 void assign_weight(Rope* rope){
     int weight = 0;
     if (rope->last != true) {
@@ -123,8 +143,12 @@ void assign_weight(Rope* rope){
     }
 }
 
+/**
+ * La fonction rope_new qui permet de créer une nouvelle rope depuis une chaines de caractères
+ * 
+ * base : la chaine de caractères que l'on veut mettre dans la rope 
+**/
 Rope* rope_new(char* base){
-    /* Permet de créer une rope à partir d'une chaine de caractères */
     Rope* root = (Rope *)malloc(sizeof(Rope));
     if (root != NULL){
         root = &(Rope) {
@@ -152,8 +176,13 @@ Rope* rope_new(char* base){
     }
 }
 
+/**
+ * La fonction rope_delete qui permet de supprimer tout une rope
+ * (en supprimant ces fils un à un)
+ * 
+ * rope : la rope à supprimer 
+**/
 void rope_delete(Rope* rope){
-    /* Permet de supprimer une rope en supprimer tout ces fils */
     if (rope->left != NULL){
         rope_delete(rope->left);
     } else if (rope->right != NULL){
@@ -162,8 +191,14 @@ void rope_delete(Rope* rope){
     free(rope);
 }
 
+/**
+ * La fonction rope_insert_at qui permet d'insérer une chaine de caractère dans la rope en donnant ça position
+ * 
+ * rope : la rope dans laquelle on veut insérer la chaine de caractères
+ * base : la chaine de caractères à insérer
+ * pos : la postion a laquelle on veut l'insérer 
+**/
 void rope_insert_at(Rope* rope, char *base, size_t pos){
-    /* Permet d'insérer un élément dans la rope a une position donner (dans la chaine de caractères)*/
     int posInt = (int)pos;
     if (rope->left == NULL) {
         insert_new_string(rope, base, posInt);
