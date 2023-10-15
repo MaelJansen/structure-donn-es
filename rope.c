@@ -9,10 +9,9 @@ char* substring(int pos, int len, int c, char* base){
     if (strlen(base)>len){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
         strncpy(substring, base+(pos-1), len);
-        strcat(substring, "\0");
-        printf("*%s\n", base);
-        printf("*%s\n\n\n", substring);
-        return substring;
+        if (substring != NULL){
+            return substring;
+        }
    }
    return base;
 }
