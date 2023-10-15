@@ -7,7 +7,7 @@
 char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
     if (strlen(base)>len){
-    	char* substring = malloc((len +1) * sizeof(char));
+    	char* substring = (char *)malloc((len +1) * sizeof(char));
         /*char* added = malloc(sizeof(char));
     	if (substring != NULL) {
     		for (int i = 0; i <= len; i++){
@@ -29,7 +29,7 @@ void insert_new_string(Rope* rope, char *base, int pos){
         int insert = pos - rope->node_content->pointeur;
         char* partOne = substring(0, insert, 0, rope->node_content->content);
         char* partTwo = substring(insert +1, strlen(rope->node_content->content) - insert, insert +1, rope->node_content->content);
-        char* final = malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
+        char* final = (char *)malloc(strlen(partOne) + strlen(base) + strlen(partTwo) + 1);
         strcpy(final, partOne);
         strcat(final, base);
         strcat(final, partTwo);
@@ -39,7 +39,7 @@ void insert_new_string(Rope* rope, char *base, int pos){
 
 Rope* recursive(char* base, int pos){
     /* Permet de créer tout les fils d'une rope */
-    Rope* rope = malloc(sizeof(Rope));
+    Rope* rope = (Rope *) malloc(sizeof(Rope));
     rope = &(Rope) {
         .left = NULL,
         .right = NULL,
@@ -99,7 +99,7 @@ void assign_weight(Rope* rope){
 
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
-    Rope* root = malloc(sizeof(Rope));
+    Rope* root = (Rope *)malloc(sizeof(Rope));
     root = &(Rope) {
         .left = NULL,
         .right = NULL,
