@@ -5,7 +5,7 @@
 #include "rope.h"
 
 /**
- * Une fonction substring qui permet de récupérer un segment de la chaine de caractères passée en paramètres
+ * La fonction substring qui permet de récupérer un segment de la chaine de caractères passée en paramètres
  * 
  * pos : la position a partir de laquell on veut copier la chaine
  * len : le nombre de caracère que l'on veut copier
@@ -23,7 +23,7 @@ char* substring(int pos, int len, char* base){
 }
 
 /**
- * Une fonction insert_new_string qui permet d'insérer une chaine de carctère dans une rope a une position donnée
+ * La fonction insert_new_string qui permet d'insérer une chaine de carctère dans une rope a une position donnée
  * 
  * rope : la rope dans laquelle on veut insérer la chaine de caractères
  * base : la chaine de caractères que l'on veut insérer dans la rope
@@ -44,10 +44,11 @@ void insert_new_string(Rope* rope, char *base, int pos){
 }
 
 /**
- * Une fonction qui permet de créer des ropes de manière récurcive
+ * La fonction recursive qui permet de créer des ropes de manière récurcive
  * en créeant des fils de manière à avoir des chaines des caractère d'une certaine longueur dans les feuilles des ropes 
  * 
- * 
+ * base : la chaine de caractère à mettre dans la rope
+ * pos : la position du premier caractère dans la rope par rapport à la chaine de caractères
 **/
 Rope* recursive(char* base, int pos){
     /* Permet de créer tout les fils d'une rope */
@@ -70,9 +71,14 @@ Rope* recursive(char* base, int pos){
     return rope;
 }
 
+/**
+ *
+ * 
+ * 
+**/
 int check_left(Rope* rope){
     if (rope->last != true){
-        return check_left(rope->left);
+        return rope->left->weight;
     }
     return strlen(rope->node_content->content);
 }
@@ -105,7 +111,9 @@ void assign_weight(Rope* rope){
             assign_weight(rope->right);
         }
         weight += check_left(rope);
-        weight += check_right(rope);
+        if (rope->left != NULL){
+            weight += check_right(rope->left);
+        }
         rope->weight = weight;
     }
     if( rope->node_content != NULL){
