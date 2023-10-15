@@ -138,7 +138,7 @@ void assign_weight(Rope rope){
         if (*rope.left != NULL){
             assign_weight(*rope.left);
         }
-        if (*rope.right != NULL){
+        if (**rope.right != NULL){
             assign_weight(*rope.right);
         }
         weight += check_left(*rope);
