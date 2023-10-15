@@ -136,7 +136,7 @@ void assign_weight(Rope* rope){
     int weight = 0;
     if (rope->last != true) {
         printf("*%s\n", "test");
-        if (rope->left != true){
+        if (rope->left != NULL){
             assign_weight(rope->left);
         }
         if (rope->right != NULL){
