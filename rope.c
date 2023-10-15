@@ -162,13 +162,11 @@ void assign_weight(Rope* rope){
 Rope* rope_new(char* base){
     Rope* root = (Rope *)malloc(sizeof(Rope));
     if (root != NULL){
-        root = &(Rope) {
-            .left = NULL,
-            .right = NULL,
-            .node_content = NULL,
-            .weight = 0,
-            .last = true
-        };
+        root->left = NULL;
+        root->right = NULL;
+        root->node_content = NULL;
+        root->weight = 0;
+        root->last = true;
         if(strlen(base) >= 1){
             root->last = false;
             if (strlen(base) > 7){
