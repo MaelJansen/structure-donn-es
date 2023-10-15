@@ -43,6 +43,12 @@ void insert_new_string(Rope* rope, char *base, int pos){
         free(partTwo);
 }
 
+/**
+ * Une fonction qui permet de créer des ropes de manière récurcive
+ * en créeant des fils de manière à avoir des chaines des caractère d'une certaine longueur dans les feuilles des ropes 
+ * 
+ * 
+**/
 Rope* recursive(char* base, int pos){
     /* Permet de créer tout les fils d'une rope */
     Rope* rope = (Rope *) malloc(sizeof(Rope));
@@ -57,8 +63,9 @@ Rope* recursive(char* base, int pos){
         rope->last = false;
         rope->left = recursive(substring(0, strlen(base)/2, base), pos);
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+    } else {
+        rope->node_content = convert(base, pos);
     }
-    rope->node_content = convert(base, pos);
     rope->weight = 0;
     return rope;
 }
