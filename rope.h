@@ -86,7 +86,7 @@ int check_right(Rope* rope);
  * 
  * rope : la rope dont pour laquelle on veut assigner les poids 
 **/
-void assign_weight(Rope rope);
+void assign_weight(Rope* rope);
 
 /**
  * La fonction rope_new qui permet de créer une nouvelle rope depuis une chaines de caractères
