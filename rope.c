@@ -97,26 +97,31 @@ void assign_weight(Rope* rope){
 Rope* rope_new(char* base){
     /* Permet de créer une rope à partir d'une chaine de caractères */
     Rope* root = (Rope *)malloc(sizeof(Rope));
-    root = &(Rope) {
-        .left = NULL,
-        .right = NULL,
-        .node_content = NULL,
-        .weight = 0,
-        .size = 0,
-        .last = true
-    };
-    if(strlen(base) >= 1){
-        root->last = false;
-        if (root != NULL && strlen(base) > 7){
-            root->left = recursive(substring(0, strlen(base)/2, base), 0);
-            root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
-            
-        } else if (root != NULL){
-            root->left = recursive(base, 0);
+    if (root != NULL){
+        root = &(Rope) {
+            .left = NULL,
+            .right = NULL,
+            .node_content = NULL,
+            .weight = 0,
+            .size = 0,
+            .last = true
+        };
+        if(strlen(base) >= 1){
+            root->last = false;
+            if (root != NULL && strlen(base) > 7){
+                root->left = recursive(substring(0, strlen(base)/2, base), 0);
+                root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+                
+            } else if (root != NULL){
+                root->left = recursive(base, 0);
+            }
         }
+        assign_weight(root);
+        return root;
+    } else {
+        perror("Memory error on recursive"); 
+        exit(EXIT_FAILURE); 
     }
-    assign_weight(root);
-    return root;
 }
 
 void rope_delete(Rope* rope){
