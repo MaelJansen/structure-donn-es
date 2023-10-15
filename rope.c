@@ -8,18 +8,10 @@ char* substring(int pos, int len, int c, char* base){
     /* Renvoie un partie du string*/
     if (strlen(base)>len){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
-        /*char* added = malloc(sizeof(char));
-    	if (substring != NULL) {
-    		for (int i = 0; i <= len; i++){
-                *added = base[pos + i];
-        		strcat(substring, added);
-    		}
-    		substring[len] = '\0';
-            free(added);
-    		return substring;
-   	    }*/
         strncpy(substring, base+(pos-1), len);
         strcat(substring, "\0");
+        printf("*%s\n", base);
+        printf("*%s\n\n\n", substring);
         return substring;
    }
    return base;
@@ -53,7 +45,6 @@ Rope* recursive(char* base, int pos){
         rope->left = recursive(substring(0, strlen(base)/2, 0, base), pos);
         rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, (strlen(base)/2)+1, base), strlen(base)/2+1);
     }
-    printf("*%s\n \n \n", base);
     rope->node_content = convert(base, pos);
     rope->weight = 0;
     return rope;
