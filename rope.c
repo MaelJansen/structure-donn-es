@@ -174,6 +174,7 @@ Rope* rope_new(char* base){
             if (strlen(base) > 7){
                 printf("%s \n\n", base);
                 printf("%s \n\n", substring(0, strlen(base)/2, base));
+                printf("%s \n\n", base);
                 printf("%s \n\n", substring((strlen(base)/2)+1, strlen(base)/2, base));
                 printf("%s", "testA");
                 root->left = recursive(substring(0, strlen(base)/2, base), 0);
