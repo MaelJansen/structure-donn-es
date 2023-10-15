@@ -55,7 +55,7 @@ Rope* recursive(char* base, int pos){
     }
     rope->node_content = convert(base, pos);
     printf("*%s\r", rope->node_content->content);
-    printf("*%s\r", "test                                   ");
+    printf("*%d\r", "test                                   ");
     rope->weight = 0;
     return rope;
 }
