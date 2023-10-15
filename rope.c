@@ -10,7 +10,7 @@ char* substring(int pos, int len, char* base){
     	char* substring = (char *)malloc((len +1) * sizeof(char));
         strncpy(substring, base+(pos-1), len);
         if (substring != NULL){
-            return substring;
+        return substring;
         }
    }
    return base;
@@ -42,7 +42,7 @@ Rope* recursive(char* base, int pos){
     if (strlen(base) > 7){
         rope->last = false;
         rope->left = recursive(substring(0, strlen(base)/2, base), pos);
-        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, strlen(base)/2+1);
+        rope->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
     }
     rope->node_content = convert(base, pos);
     rope->weight = 0;
@@ -110,6 +110,7 @@ Rope* rope_new(char* base){
         if (root != NULL && strlen(base) > 7){
             root->left = recursive(substring(0, strlen(base)/2, base), 0);
             root->right = recursive(substring((strlen(base)/2)+1, strlen(base)/2, base), strlen(base)/2+1);
+            
         } else if (root != NULL){
             root->left = recursive(base, 0);
         }
